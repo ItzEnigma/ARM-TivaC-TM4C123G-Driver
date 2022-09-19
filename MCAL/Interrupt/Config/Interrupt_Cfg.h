@@ -26,7 +26,7 @@
     INTERRUPT_PRIORITY_2 :  4 Main group priorities and 2 sub-prorities for each group
     INTERRUPT_PRIORITY_3 :  2 Main group priorities and 4 sub-prorities for each group
     INTERRUPT_PRIORITY_4 :  1 Main group priorities and 8 sub-prorities                      */
-#define INTERRUPT_PRIORITY_MODE                                     INTERRUPT_PRIORITY_1
+#define INTERRUPT_PRIORITY_MODE                                     INTERRUPT_PRIORITY_3
 
 
 /************************** Interrupts ENABLE\DISABLE Configuration *********************************/

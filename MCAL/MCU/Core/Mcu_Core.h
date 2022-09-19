@@ -21,6 +21,7 @@
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
+/************************************************** NVIC Registers ********************************************************/
 #define CORTEXM4_CORE_BASE_ADDRESS                              (u32)0xE000E000
 #define APINT                                                   *((volatile u32*)(CORTEXM4_CORE_BASE_ADDRESS + 0xD0C))
 #define INTCTRL                                                 *((volatile u32*)(CORTEXM4_CORE_BASE_ADDRESS + 0xD04))
@@ -31,6 +32,19 @@
 #define NVIC_REGISTER_ACTIVE                       ((volatile NVIC_CTRL_REGISTERS*)(CORTEXM4_CORE_BASE_ADDRESS + 0x300))
 #define NVIC_REGISTER_PRI                      ((volatile NVIC_PRI_CTRL_REGISTERS*)(CORTEXM4_CORE_BASE_ADDRESS + 0x400))
 #define NVIC_REGISTER_SWTRIG                                    *((volatile u32*)(CORTEXM4_CORE_BASE_ADDRESS + 0xF00))
+/**************************************************************************************************************************/
+
+/************************************************** SCB Registers *********************************************************/
+#define SYSCTRL                                                 *((volatile u32*)(CORTEXM4_CORE_BASE_ADDRESS + 0xD10))
+/**************************************************************************************************************************/
+
+/************************************************** System Control Registers ********************************************************/
+#define CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS                        (u32)0x400FE000
+#define SYSCTRL_REGISTER_REGISTER_RCC               ((volatile Register_32bits*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x060))
+
+#define SYSCTRL_REGISTER_REGISTER_RCC2              ((volatile Register_32bits*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x070))
+
+/************************************************************************************************************************************/
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
@@ -40,6 +54,13 @@
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
+
+/**** NVIC Priority - Union to allow accessing by whole register or single interrupt ******/
+typedef union 
+{
+    u32 REG;
+    Register_32bits N;
+}REGISTER_TAG;
 
 /**** NVIC - struct corresponding to 5 consecutive registers ******/
 typedef struct{
@@ -107,6 +128,11 @@ typedef struct{
     NVIC_PRIORITY_TAG        N33;
     NVIC_PRIORITY_TAG        N34;
 }NVIC_PRI_CTRL_REGISTERS;
+
+
+// typedef struct{
+//     u32 
+// }Mcu_strClockType;
 
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES

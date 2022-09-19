@@ -50,7 +50,7 @@
 void Interrupt_Init(void)
 {
     /******************** Configuring Priority Grouping\Subgrouping for system in APINT Register *********************/
-    APINT |= (0xFA05000000000000 | INTERRUPT_PRIORITY_MODE << 8);
+    APINT |= (0x05FA0000 | (INTERRUPT_PRIORITY_MODE << 8));
 
     /************** Enable\Disable NVIC_ENx Registers (Enabling and Disabling Peripherals Interrupts) ****************/  
 // GPIOx Interrupt ENABLE

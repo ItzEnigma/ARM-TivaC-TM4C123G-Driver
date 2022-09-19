@@ -2,32 +2,26 @@
 
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  Platform_Types.h
+ *         File:  Mcu.h
  *       Module:  -
  *
- *  Description:  Contains data types defintiions that are dependent on platform/target - CortexM4
+ *  Description:  Contains Micro-Controller Initialization (System/Clock/...)
  *  
  *********************************************************************************************************************/
-#ifndef PLATFORM_TYPES_H
-#define PLATFORM_TYPES_H
+#ifndef MCU_H
+#define MCU_H
 
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
 
 
+#include "Mcu_Cfg.h"
+
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
-#define LSB_FIRST        	         1u        /* Little endian bit ordering */
-#define MSB_FIRST                    0u        /* Big endian bit ordering */
-#define LOW_BYTE_FIRST		         1u        /* Little endian byte ordering */
-#define HIGH_BYTE_FIRST  	         0u        /* Big endian byte ordering */
-
-/*  MCU -> CPU Bit/Byte Ordering Mode */
-#define CPU_BIT_ORDER    	        LSB_FIRST        
-#define CPU_BYTE_ORDER   	        LOW_BYTE_FIRST   
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
@@ -38,15 +32,6 @@
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
 
-typedef unsigned char                           u08;         /*          0  : +255            */
-typedef signed char                             s08;         /*        -128 : +127            */
-typedef unsigned short                          u16;         /*      -32768 : +32767          */
-typedef signed short                            s16;         /*          0  : +65535          */
-typedef unsigned long                           u32;         /*          0  : +4294967295     */
-typedef signed long                             s32;         /* -2147483648 : +2147483647     */
-
-typedef float                                   f32;         /*            4 Bytes            */
-typedef double                                  f64;         /*            8 Bytes            */
 
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
@@ -56,10 +41,11 @@ typedef double                                  f64;         /*            8 Byt
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
+//Std_ReturnType Mcu_ClockInit ( Mcu_strClockType strClockCfg);
 
  
-#endif  /* PLATFORM_TYPES_H */
+#endif  /* MCU_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: Platform_Types.h
+ *  END OF FILE: Mcu.h
  *********************************************************************************************************************/
