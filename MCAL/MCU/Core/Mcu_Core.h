@@ -40,9 +40,38 @@
 
 /************************************************** System Control Registers ********************************************************/
 #define CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS                        (u32)0x400FE000
-#define SYSCTRL_REGISTER_REGISTER_RCC               ((volatile Register_32bits*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x060))
+#define SYSCTRL_REGISTER_REGISTER_RCC               *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x060))
 
-#define SYSCTRL_REGISTER_REGISTER_RCC2              ((volatile Register_32bits*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x070))
+#define SYSCTRL_REGISTER_REGISTER_RCC2              *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x070))
+
+#define SYS_CTRL_REGISTER_PLLSTAT                   *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x168))
+
+
+
+
+/*            Input values for OSC               */
+#define MCU_OSC_SRC_MOSC                        0x0
+#define MCU_OSC_SRC_PIOSC                       0x1
+#define MCU_OSC_SRC_PIOSC_OVER4                 0x2
+#define MCU_OSC_SRC_LFIOSC                      0x3
+
+typedef enum{
+    MCU_CLOCK_FREQ_66F_MHZ                    = 0x2,
+    MCU_CLOCK_FREQ_50MHZ                      = 0x3,
+    MCU_CLOCK_FREQ_40MHZ                      = 0x4,
+    MCU_CLOCK_FREQ_33F_MHZ                    = 0x5,
+    MCU_CLOCK_FREQ_28F_MHZ                    = 0x6,
+    MCU_CLOCK_FREQ_25MHZ                      = 0x7,
+    MCU_CLOCK_FREQ_22F_MHZ                    = 0x8,
+    MCU_CLOCK_FREQ_20MHZ                      = 0x9,
+    MCU_CLOCK_FREQ_18F_MHZ                    = 0xA,
+    MCU_CLOCK_FREQ_16F_MHZ                    = 0xB,
+    MCU_CLOCK_FREQ_15F_MHZ                    = 0xC,
+    MCU_CLOCK_FREQ_14F_MHZ                    = 0xD,
+    MCU_CLOCK_FREQ_13F_MHZ                    = 0xE,
+    MCU_CLOCK_FREQ_12F_MHZ_DEFAULT            = 0xF,
+}System_Clock_Frequencies_e;
+
 
 /************************************************************************************************************************************/
 
