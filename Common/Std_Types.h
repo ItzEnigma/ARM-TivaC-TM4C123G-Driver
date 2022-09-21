@@ -168,6 +168,14 @@ typedef enum{
     bit32
 }Register_Bits;
 
+
+/**** Union to allow accessing by whole register or single bit ******/
+typedef union 
+{
+    u32 REG;
+    Register_32bits N;
+}REGISTER_TAG;
+
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
  *********************************************************************************************************************/
