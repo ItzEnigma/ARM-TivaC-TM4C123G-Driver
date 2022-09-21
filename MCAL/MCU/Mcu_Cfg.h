@@ -45,6 +45,72 @@
 #define MCU_SYSDIV_VAL                           MCU_CLOCK_FREQ_20MHZ
 
 
+/*      Peripherals Clock Gate (ENABLE/DISABLE)       */
+#define GPIOA_CLK_STATE                         ENABLE
+#define GPIOB_CLK_STATE                         ENABLE
+#define GPIOC_CLK_STATE                         ENABLE
+#define GPIOD_CLK_STATE                         ENABLE
+#define GPIOE_CLK_STATE                         ENABLE
+#define GPIOF_CLK_STATE                         ENABLE
+
+#define WD0_CLK_STATE                           DISABLE
+#define WD1_CLK_STATE                           DISABLE
+
+#define TIMR0_16TO32_CLK_STATE                  DISABLE
+#define TIMR1_16TO32_CLK_STATE                  DISABLE
+#define TIMR2_16TO32_CLK_STATE                  DISABLE
+#define TIMR3_16TO32_CLK_STATE                  DISABLE
+#define TIMR4_16TO32_CLK_STATE                  DISABLE
+#define TIMR5_16TO32_CLK_STATE                  DISABLE
+
+#define TIMR0_32TO64_CLK_STATE                  ENABLE
+#define TIMR1_32TO64_CLK_STATE                  DISABLE
+#define TIMR2_32TO64_CLK_STATE                  DISABLE
+#define TIMR3_32TO64_CLK_STATE                  DISABLE
+#define TIMR4_32TO64_CLK_STATE                  DISABLE
+#define TIMR5_32TO64_CLK_STATE                  DISABLE
+
+#define ADC0_CLK_STATE                          DISABLE
+#define ADC1_CLK_STATE                          DISABLE
+
+#define UART0_CLK_STATE                         DISABLE
+#define UART1_CLK_STATE                         DISABLE
+#define UART2_CLK_STATE                         DISABLE
+#define UART3_CLK_STATE                         DISABLE
+#define UART4_CLK_STATE                         DISABLE
+#define UART5_CLK_STATE                         DISABLE
+#define UART6_CLK_STATE                         DISABLE
+#define UART7_CLK_STATE                         DISABLE
+
+#define SSI0_CLK_STATE                          DISABLE
+#define SSI1_CLK_STATE                          DISABLE
+#define SSI2_CLK_STATE                          DISABLE
+#define SSI3_CLK_STATE                          DISABLE
+
+#define I2C0_CLK_STATE                          DISABLE
+#define I2C1_CLK_STATE                          DISABLE
+#define I2C2_CLK_STATE                          DISABLE
+#define I2C3_CLK_STATE                          DISABLE
+
+#define USB_CLK_STATE                           DISABLE
+
+#define CAN0_CLK_STATE                          DISABLE
+#define CAN1_CLK_STATE                          DISABLE
+
+#define AnalogComp_CLK_STATE                    DISABLE
+
+#define PWM0_CLK_STATE                          DISABLE
+#define PWM1_CLK_STATE                          DISABLE
+
+#define QEI0_CLK_STATE                          DISABLE
+#define QEI1_CLK_STATE                          DISABLE
+
+#define EEPROM_CLK_STATE                        DISABLE
+
+#define UDMA_CLK_STATE                          DISABLE
+
+#define HIB_CLK_STATE                           DISABLE
+
 
 //#if MCU_MAIN_OSC_STATE == 1
 

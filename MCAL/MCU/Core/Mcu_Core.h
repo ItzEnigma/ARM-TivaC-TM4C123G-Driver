@@ -40,12 +40,15 @@
 
 /************************************************** System Control Registers ********************************************************/
 #define CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS                        (u32)0x400FE000
-#define SYSCTRL_REGISTER_REGISTER_RCC               *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x060))
-
-#define SYSCTRL_REGISTER_REGISTER_RCC2              *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x070))
-
-#define SYS_CTRL_REGISTER_PLLSTAT                   *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x168))
-
+#define SYSCTRL_REGISTER_REGISTER_RCC                   *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x060))
+    
+#define SYSCTRL_REGISTER_REGISTER_RCC2                  *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x070))
+    
+#define SYS_CTRL_REGISTER_PLLSTAT                       *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x168))
+    
+#define SYS_CTRL_REGISTER_PERIPHERALS_CLK_SET1            ((volatile SYS_PERH_CLK_CTRL1*) (CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x600))
+#define SYS_CTRL_REGISTER_PERIPHERALS_CLK_SET2            ((volatile SYS_PERH_CLK_CTRL2*) (CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x634))
+#define SYS_CTRL_REGISTER_PERIPHERALS_CLK_SET3            ((volatile SYS_PERH_CLK_CTRL3*) (CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x658))
 
 
 
@@ -158,6 +161,32 @@ typedef struct{
     NVIC_PRIORITY_TAG        N34;
 }NVIC_PRI_CTRL_REGISTERS;
 
+/**** SYS Peripheral1 CLK - struct corresponding to clock state for peripherals ******/
+typedef struct{
+    REGISTER_TAG    RCGCWD            ;
+    REGISTER_TAG    RCGCTIMER_16TO32  ;
+    REGISTER_TAG    RCGCGPIO          ;  
+    REGISTER_TAG    RCGCDMA           ;   
+    REGISTER_TAG    RCGCHIB           ;   
+    REGISTER_TAG    RCGCUART          ;  
+    REGISTER_TAG    RCGCSSI           ;   
+    REGISTER_TAG    RCGCI2C           ;   
+}SYS_PERH_CLK_CTRL1;
+
+/**** SYS Peripheral2 CLK - struct corresponding to clock state for peripherals ******/
+typedef struct{
+    REGISTER_TAG    RCGCCAN           ;   
+    REGISTER_TAG    RCGCADC           ;   
+    REGISTER_TAG    RCGCACMP          ;  
+    REGISTER_TAG    RCGCPWM           ;   
+    REGISTER_TAG    RCGCQEI           ;   
+}SYS_PERH_CLK_CTRL2;
+
+/**** SYS Peripheral CLK - struct corresponding to clock state for peripherals ******/
+typedef struct{    
+    REGISTER_TAG    RCGCEEPROM        ;
+    REGISTER_TAG    RCGCWTIMER_32TO64 ;
+}SYS_PERH_CLK_CTRL3;
 
 // typedef struct{
 //     u32 
