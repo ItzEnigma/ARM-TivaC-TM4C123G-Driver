@@ -20,6 +20,10 @@
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
+#define AHB													0
+#define APB													1
+
+
 #define TOTAL_GPIO_PINS                                     43U
 
 /*                         Aperture                        */
@@ -31,7 +35,7 @@
 #endif
 
 #ifndef OUTPUT
-    #define INPUT                                           1
+    #define OUTPUT                                           1
 #endif
 
 /**********************************************************************************************************************
@@ -62,16 +66,25 @@ typedef enum
 	PIN4       = 4,
 	PIN5       = 5,
 	PIN6       = 6,
-	PIN7       = 7,
+	PIN7       = 7
 } Port_Pinx_e;
 
 /* TODO: Add The Other Modes */
 typedef enum
 {
-	DIO_MODE   = 0,
-	ICU_MODE   = 1,
-	ADC_MODE   = 2
+	DIO_MODE   				= 0,
+	ICU_MODE   				= 1,
+	ADC_MODE   				= 2,
+	UART_MODE  				= 3,
+	EXT_INTERRUPT_MODE 		= 4
 } Port_PinModeT_e;
+
+
+typedef enum
+{
+	PIN_INPUT	   = 0,
+	PIN_OUTPUT	   = 1
+}Port_PinDirection_e;
 
 
 typedef enum
@@ -103,6 +116,7 @@ typedef struct{
     Port_Portx_e                portX;
     Port_Pinx_e                 pinX;
     Port_PinModeT_e             pinMode;
+	Port_PinDirection_e			pinDir;
     Port_PinInternalAttach_e    pinInternaAttach;
     Port_PinOutputCurrent_e     pinOutputCurrent;
     Port_PinLevel_e             pinLevel;

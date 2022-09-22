@@ -23,19 +23,19 @@
 
 /********************************************* GPIO DATA Registers ***************************************************/
                                         /*  [APB] GPIO DATA BASE    */
-#define GPIO_PORTA_APB_BASE_ADDRESS           					                (0x40004000)
-#define GPIO_PORTB_APB_BASE_ADDRESS           					                (0x40005000)
-#define GPIO_PORTC_APB_BASE_ADDRESS           					                (0x40006000)
-#define GPIO_PORTD_APB_BASE_ADDRESS           					                (0x40007000)
-#define GPIO_PORTE_APB_BASE_ADDRESS           					                (0x40024000)
-#define GPIO_PORTF_APB_BASE_ADDRESS           					                (0x40025000)
+#define GPIO_PORTA_APB_BASE_ADDRESS           					                (u32)(0x40004000)
+#define GPIO_PORTB_APB_BASE_ADDRESS           					                (u32)(0x40005000)
+#define GPIO_PORTC_APB_BASE_ADDRESS           					                (u32)(0x40006000)
+#define GPIO_PORTD_APB_BASE_ADDRESS           					                (u32)(0x40007000)
+#define GPIO_PORTE_APB_BASE_ADDRESS           					                (u32)(0x40024000)
+#define GPIO_PORTF_APB_BASE_ADDRESS           					                (u32)(0x40025000)
                                         /*  [AHB] GPIO DATA BASE    */
-#define GPIO_PORTA_AHB_BASE_ADDRESS                                             (0x40058000)
-#define GPIO_PORTB_AHB_BASE_ADDRESS                                             (0x40059000)
-#define GPIO_PORTC_AHB_BASE_ADDRESS                                             (0x4005A000)
-#define GPIO_PORTD_AHB_BASE_ADDRESS                                             (0x4005B000)
-#define GPIO_PORTE_AHB_BASE_ADDRESS                                             (0x4005C000)
-#define GPIO_PORTF_AHB_BASE_ADDRESS                                             (0x4005D000)
+#define GPIO_PORTA_AHB_BASE_ADDRESS                                             (u32)(0x40058000)
+#define GPIO_PORTB_AHB_BASE_ADDRESS                                             (u32)(0x40059000)
+#define GPIO_PORTC_AHB_BASE_ADDRESS                                             (u32)(0x4005A000)
+#define GPIO_PORTD_AHB_BASE_ADDRESS                                             (u32)(0x4005B000)
+#define GPIO_PORTE_AHB_BASE_ADDRESS                                             (u32)(0x4005C000)
+#define GPIO_PORTF_AHB_BASE_ADDRESS                                             (u32)(0x4005D000)
 
 
 

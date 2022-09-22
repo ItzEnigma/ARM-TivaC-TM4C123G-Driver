@@ -45,6 +45,18 @@
 
 
 
+    /*                          CONFIGURATION NOTES
+     * 1 : ********** Don't Change The Ports **********
+     * 2 : ********** Don't Change The Pins  **********
+     * 3 : You can change pin mode using Port_PinModeT_e (enum)
+     * 4 : You can change pin direction using Port_PinDirection_e (enum)
+     * 5 : You can change pin internal using attach Port_PinInternalAttach_e (enum)
+     * 6 : You can change pin output current using Port_PinOutputCurrent_e (enum)
+     * 7 : You can change pin level for output using Port_PinLevel_e (enum) *** BUT DEFAULT PIN_LEVEL_LOW ***
+     * 
+     *                                                                                                              */
+extern const Port_strConfig Port_strPortConfig;
+
 
 
  
