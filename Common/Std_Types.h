@@ -20,6 +20,9 @@
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
+/*                           NULL POINTER DEFINITION                                           */
+#define NULL_PTR       ((void *)0)
+
 /*                           MCU BITS                                           */
 #define MCU_BITS_CONFIG                                          32
 

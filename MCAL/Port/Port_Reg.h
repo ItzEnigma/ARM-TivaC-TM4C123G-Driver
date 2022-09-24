@@ -27,10 +27,12 @@
     /*                              GPIOA Settings Struct of registers                                               */
     #define GPIO_PORTA_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTA_AHB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTA_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTA_AHB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTA_DATA                              GPIO_PORTA_AHB_BASE_ADDRESS
 #elif   GPIOA_APERTURE == APB
     /*                              GPIOA Settings Struct of registers                                               */
     #define GPIO_PORTA_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTA_APB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTA_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTA_APB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTA_DATA                              GPIO_PORTA_APB_BASE_ADDRESS
 #else
     #error ERROR ... Undefined GPIOA Aperture
 #endif
@@ -40,10 +42,12 @@
     /*                              GPIOB Settings Struct of registers                                               */
     #define GPIO_PORTB_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTB_AHB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTB_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTB_AHB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTB_DATA                              GPIO_PORTB_AHB_BASE_ADDRESS
 #elif   GPIOB_APERTURE == APB
     /*                              GPIOB Settings Struct of registers                                               */
     #define GPIO_PORTB_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTB_APB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTB_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTB_APB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTB_DATA                              GPIO_PORTB_APB_BASE_ADDRESS
 #else
     #error ERROR ... Undefined GPIOB Aperture
 #endif
@@ -53,10 +57,12 @@
     /*                              GPIOC Settings Struct of registers                                               */
     #define GPIO_PORTC_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTC_AHB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTC_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTC_AHB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTC_DATA                              GPIO_PORTC_AHB_BASE_ADDRESS
 #elif   GPIOC_APERTURE == APB
     /*                              GPIOC Settings Struct of registers                                               */
     #define GPIO_PORTC_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTC_APB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTC_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTC_APB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTC_DATA                              GPIO_PORTC_APB_BASE_ADDRESS
 #else
     #error ERROR ... Undefined GPIOC Aperture
 #endif
@@ -66,10 +72,12 @@
     /*                              GPIOD Settings Struct of registers                                               */
     #define GPIO_PORTD_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTD_AHB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTD_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTD_AHB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTD_DATA                              GPIO_PORTD_AHB_BASE_ADDRESS
 #elif   GPIOD_APERTURE == APB
     /*                              GPIOD Settings Struct of registers                                               */
     #define GPIO_PORTD_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTD_APB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTD_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTD_APB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTD_DATA                              GPIO_PORTD_APB_BASE_ADDRESS
 #else
     #error ERROR ... Undefined GPIOD Aperture
 #endif
@@ -79,10 +87,12 @@
     /*                              GPIOE Settings Struct of registers                                               */
     #define GPIO_PORTE_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTE_AHB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTE_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTE_AHB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTE_DATA                              GPIO_PORTE_AHB_BASE_ADDRESS
 #elif   GPIOE_APERTURE == APB
     /*                              GPIOE Settings Struct of registers                                               */
     #define GPIO_PORTE_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTE_APB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTE_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTE_APB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTE_DATA                              GPIO_PORTE_APB_BASE_ADDRESS
 #else
     #error ERROR ... Undefined GPIOE Aperture
 #endif
@@ -92,10 +102,12 @@
     /*                              GPIOF Settings Struct of registers                                               */
     #define GPIO_PORTF_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTF_AHB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTF_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTF_AHB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTF_DATA                              GPIO_PORTF_AHB_BASE_ADDRESS
 #elif   GPIOF_APERTURE == APB
     /*                              GPIOF Settings Struct of registers                                               */
     #define GPIO_PORTF_REGISTER_SET1                    ((volatile GPIO_REG_SET1*)(GPIO_PORTF_APB_BASE_ADDRESS + 0x400))
     #define GPIO_PORTF_REGISTER_SET2                    ((volatile GPIO_REG_SET2*)(GPIO_PORTF_APB_BASE_ADDRESS + 0x500))
+    #define DIO_PORTF_DATA                              GPIO_PORTF_APB_BASE_ADDRESS
 #else
     #error ERROR ... Undefined GPIOF Aperture
 #endif

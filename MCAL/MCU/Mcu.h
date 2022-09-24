@@ -33,6 +33,8 @@
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
 
+typedef void (*SysTick_Notification)(void);
+
 /*  GPIO Clock Gate Register    */
 typedef enum{
     GPIOA_CLK,
@@ -99,6 +101,12 @@ typedef enum{
 void Mcu_ClockInit(void);
 
 void Mcu_PeripheralClocksInit(void);
+
+void Mcu_SysTick_Init(void);
+
+void SysTick_SetNotification(SysTick_Notification);
+
+void SysTick_Handler(void);
 
 void Mcu_Init(void);
 

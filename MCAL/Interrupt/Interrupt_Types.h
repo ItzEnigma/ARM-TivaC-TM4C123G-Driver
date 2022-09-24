@@ -74,12 +74,12 @@ typedef enum{
     TIMER2B_16TO32_BIT                =      24,
     ANALOG_COMPARATOR0                =      25,
     ANALOG_COMPARATOR1                =      26,
-// 27 ... Reserved
+/*  27 ... Reserved  */
     SYSTEM_CONTROL                    =      28,
     FLASH_AND_EEPROM_CONTROLL         =      29,
     GPIO_PORTF                        =      30,
-// 31 ... Reserved
-// 32 ... Reserved
+/*  31 ... Reserved  */
+/*  32 ... Reserved  */
     UART2                             =      33,
     SSI1                              =      34,
     TIMER3A_16TO32_BIT                =      35,
@@ -88,8 +88,8 @@ typedef enum{
     QEI1                              =      38,
     CAN0                              =      39,
     CAN1                              =      40,
-// 41 ... Reserved
-// 42 ... Reserved
+/*  41 ... Reserved  */
+/*42 ... Reserved    */
     HIBERNATION_MODULE                =      43,
     USB                               =      44,
     PWM0_GENERATOR3                   =      45,
@@ -99,11 +99,11 @@ typedef enum{
     ADC1_SEQUENCE1                    =      49,
     ADC1_SEQUENCE2                    =      50,
     ADC1_SEQUENCE3                    =      51,
-// 52 ... Reserved
-// 53 ... Reserved
-// 54 ... Reserved
-// 55 ... Reserved
-// 56 ... Reserved
+/* 52 ... Reserved   */
+/* 53 ... Reserved   */
+/* 54 ... Reserved   */
+/* 55 ... Reserved   */
+/* 56 ... Reserved   */
     SSI2                              =      57,
     SSI3                              =      58,
     UART3                             =      59,
@@ -111,15 +111,15 @@ typedef enum{
     UART5                             =      61,
     UART6                             =      62,
     UART7                             =      63,
-// 64 ... Reserved
-// 65 ... Reserved
-// 66 ... Reserved
-// 67 ... Reserved
+/*  64 ... Reserved   */
+/*  65 ... Reserved   */
+/*  66 ... Reserved   */
+/*  67 ... Reserved   */
     I2C2                              =      68,
     I2C3                              =      69,
     TIMER4A_16TO32_BIT                =      70,
     TIMER4B_16TO32_BIT                =      71,
-// 72 : 91 ... Reserved
+/*  72 : 91 ... Reserved    */
     TIMER5A_16TO32_BIT                =      92,
     TIMER5B_16TO32_BIT                =      93,
     TIMER0A_32TO64_BIT                =      94,
@@ -135,7 +135,7 @@ typedef enum{
     TIMER5A_32TO64_BIT                =     104,
     TIMER5B_32TO64_BIT                =     105,
     SYSTEM_EXCEPTION_IMPRECISE        =     106,
-// 107 : 133 ... Reserved
+/*  107 : 133 ... Reserved  */
     PWM1_GENERATOR0                   =     134,
     PWM1_GENERATOR1                   =     135,
     PWM1_GENERATOR2                   =     136,

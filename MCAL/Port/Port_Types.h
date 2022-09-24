@@ -20,15 +20,13 @@
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
-#define AHB													0
-#define APB													1
 
 
 #define TOTAL_GPIO_PINS                                     43U
 
 /*                         Aperture                        */
-#define ABP                                                 0
-#define AHP                                                 1
+#define APB                                                 0
+#define AHB                                                 1
 
 #ifndef INPUT
     #define INPUT                                           0

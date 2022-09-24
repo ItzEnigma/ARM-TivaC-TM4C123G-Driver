@@ -41,15 +41,16 @@
 
 
 /******************************************************************************
-* \Syntax          : Std_ReturnType FunctionName(AnyType parameterName)        
-* \Description     : Describe this service                                    
-*                                                                             
-* \Sync\Async      : Synchronous                                               
-* \Reentrancy      : Non Reentrant                                             
-* \Parameters (in) : parameterName   Parameter Describtion                     
-* \Parameters (out): None                                                      
-* \Return value:   : Std_ReturnType  E_OK
-*                                    E_NOT_OK                                  
+* Syntax          : void Port_Init(struct strConfigPtr)        
+* Description     : Initialization for Port for the ARM Controller for all the pins.
+                   - Setup the pin-mode
+                       - If DIO ... Setup pin's : (Direction, internal attach, output current)
+                   * IF OTHER MODES ... TO BE SETUPED                                                                          
+* Sync\Async      : Synchronous                                               
+* Reentrancy      : Non Reentrant                                             
+* Parameters (in) : strConfigPtr - Pointer to Port Configuration struct -                     
+* Parameters (out): None                                                      
+* Return value:   : None                                
 *******************************************************************************/
 void Port_Init(const Port_strConfig* strConfigPtr)
 {
@@ -61,44 +62,120 @@ void Port_Init(const Port_strConfig* strConfigPtr)
     {
 
 
+    /*                         Pin Mode Configuration                        */
         switch ( strConfigPtr->pinConfig[u08Pin].pinMode )
         {
         case DIO_MODE :         /*  PIN DIO CONFIG  */
             /*                  PORTA CONFIGURATION                */
             switch (strConfigPtr->pinConfig[u08Pin].portX)
             {
-            case PORTA :
+            case PORTA :        /*  PORTA DIO   */
                 u08TempPin = strConfigPtr->pinConfig[u08Pin].pinX;
                 CLEAR_BIT(GPIO_PORTA_REGISTER_SET1->GPIOAFSEL.REG, u08TempPin) ;      /*  Choose DIO  */
-                SET_BIT(GPIO_PORTA_REGISTER_SET2->GPIODEN.REG, u08TempPin)     ;        /*  Enable Digital  */
+                SET_BIT  (GPIO_PORTA_REGISTER_SET2->GPIODEN.REG, u08TempPin)     ;        /*  Enable Digital  */
                 if (strConfigPtr->pinConfig[u08Pin].pinDir == INPUT){
                     CLEAR_BIT(GPIO_PORTA_REGISTER_SET1->GPIODIR.REG, u08TempPin);
-                    if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_UP) SET_BIT(GPIO_PORTA_REGISTER_SET2->GPIOPUR.REG, u08TempPin);
+                    if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_UP)        SET_BIT(GPIO_PORTA_REGISTER_SET2->GPIOPUR.REG, u08TempPin);
                     else if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_DOWN) SET_BIT(GPIO_PORTA_REGISTER_SET2->GPIOPDR.REG, u08TempPin);
                     /* TODO: OPEN DRAIN INTERNAL ATTACH */
                     /* TODO: SLEW RATE INTERNAL ATTACH */
                 }
                 else if ((strConfigPtr->pinConfig[u08Pin].pinDir == OUTPUT)){
                     SET_BIT(GPIO_PORTA_REGISTER_SET1->GPIODIR.REG, u08TempPin);
-                    if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_2mA) SET_BIT(GPIO_PORTA_REGISTER_SET2->GPIODR2R.REG, u08TempPin);
-                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_4mA) SET_BIT(GPIO_PORTA_REGISTER_SET2->GPIODR4R.REG, u08TempPin);
-                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_8mA) SET_BIT(GPIO_PORTA_REGISTER_SET2->GPIODR8R.REG, u08TempPin);
+                    if     (strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_2mA) SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIODR2R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_4mA) SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIODR4R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_8mA) SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIODR8R.REG, u08TempPin);
                 }
                 break;
-            case PORTB :
-                /* code */
+            case PORTB :        /*  PORTB DIO   */
+                u08TempPin = strConfigPtr->pinConfig[u08Pin].pinX;
+                CLEAR_BIT(GPIO_PORTB_REGISTER_SET1->GPIOAFSEL.REG, u08TempPin) ;      /*  Choose DIO  */
+                SET_BIT  (GPIO_PORTB_REGISTER_SET2->GPIODEN.REG, u08TempPin)     ;        /*  Enable Digital  */
+                if (strConfigPtr->pinConfig[u08Pin].pinDir == INPUT){
+                    CLEAR_BIT(GPIO_PORTB_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_UP)        SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIOPUR.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_DOWN) SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIOPDR.REG, u08TempPin);
+                    /* TODO: OPEN DRAIN INTERNAL ATTACH */
+                    /* TODO: SLEW RATE INTERNAL ATTACH */
+                }
+                else if ((strConfigPtr->pinConfig[u08Pin].pinDir == OUTPUT)){
+                    SET_BIT(GPIO_PORTA_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if     (strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_2mA) SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIODR2R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_4mA) SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIODR4R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_8mA) SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIODR8R.REG, u08TempPin);
+                }
                 break;
-            case PORTC :
-                /* code */
+            case PORTC :        /*  PORTC DIO   */
+                u08TempPin = strConfigPtr->pinConfig[u08Pin].pinX;
+                CLEAR_BIT(GPIO_PORTC_REGISTER_SET1->GPIOAFSEL.REG, u08TempPin) ;      /*  Choose DIO  */
+                SET_BIT  (GPIO_PORTC_REGISTER_SET2->GPIODEN.REG, u08TempPin)     ;        /*  Enable Digital  */
+                if (strConfigPtr->pinConfig[u08Pin].pinDir == INPUT){
+                    CLEAR_BIT(GPIO_PORTC_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_UP)        SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIOPUR.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_DOWN) SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIOPDR.REG, u08TempPin);
+                    /* TODO: OPEN DRAIN INTERNAL ATTACH */
+                    /* TODO: SLEW RATE INTERNAL ATTACH */
+                }
+                else if ((strConfigPtr->pinConfig[u08Pin].pinDir == OUTPUT)){
+                    SET_BIT(GPIO_PORTC_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if     (strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_2mA) SET_BIT(GPIO_PORTC_REGISTER_SET2->GPIODR2R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_4mA) SET_BIT(GPIO_PORTC_REGISTER_SET2->GPIODR4R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_8mA) SET_BIT(GPIO_PORTC_REGISTER_SET2->GPIODR8R.REG, u08TempPin);
+                }
                 break;
-            case PORTD :
-                /* code */
+            case PORTD :        /*  PORTD DIO   */
+                u08TempPin = strConfigPtr->pinConfig[u08Pin].pinX;
+                CLEAR_BIT(GPIO_PORTD_REGISTER_SET1->GPIOAFSEL.REG, u08TempPin) ;      /*  Choose DIO  */
+                SET_BIT  (GPIO_PORTD_REGISTER_SET2->GPIODEN.REG, u08TempPin)     ;        /*  Enable Digital  */
+                if (strConfigPtr->pinConfig[u08Pin].pinDir == INPUT){
+                    CLEAR_BIT(GPIO_PORTD_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_UP)        SET_BIT(GPIO_PORTD_REGISTER_SET2->GPIOPUR.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_DOWN) SET_BIT(GPIO_PORTD_REGISTER_SET2->GPIOPDR.REG, u08TempPin);
+                    /* TODO: OPEN DRAIN INTERNAL ATTACH */
+                    /* TODO: SLEW RATE INTERNAL ATTACH */
+                }
+                else if ((strConfigPtr->pinConfig[u08Pin].pinDir == OUTPUT)){
+                    SET_BIT(GPIO_PORTA_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if     (strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_2mA) SET_BIT(GPIO_PORTD_REGISTER_SET2->GPIODR2R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_4mA) SET_BIT(GPIO_PORTD_REGISTER_SET2->GPIODR4R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_8mA) SET_BIT(GPIO_PORTD_REGISTER_SET2->GPIODR8R.REG, u08TempPin);
+                }
                 break;
-            case PORTE :
-                /* code */
+            case PORTE :        /*  PORTE DIO   */
+                u08TempPin = strConfigPtr->pinConfig[u08Pin].pinX;
+                CLEAR_BIT(GPIO_PORTE_REGISTER_SET1->GPIOAFSEL.REG, u08TempPin) ;      /*  Choose DIO  */
+                SET_BIT  (GPIO_PORTE_REGISTER_SET2->GPIODEN.REG, u08TempPin)     ;        /*  Enable Digital  */
+                if (strConfigPtr->pinConfig[u08Pin].pinDir == INPUT){
+                    CLEAR_BIT(GPIO_PORTE_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_UP)        SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIOPUR.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_DOWN) SET_BIT(GPIO_PORTB_REGISTER_SET2->GPIOPDR.REG, u08TempPin);
+                    /* TODO: OPEN DRAIN INTERNAL ATTACH */
+                    /* TODO: SLEW RATE INTERNAL ATTACH */
+                }
+                else if ((strConfigPtr->pinConfig[u08Pin].pinDir == OUTPUT)){
+                    SET_BIT(GPIO_PORTE_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if     (strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_2mA) SET_BIT(GPIO_PORTE_REGISTER_SET2->GPIODR2R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_4mA) SET_BIT(GPIO_PORTE_REGISTER_SET2->GPIODR4R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_8mA) SET_BIT(GPIO_PORTE_REGISTER_SET2->GPIODR8R.REG, u08TempPin);
+                }
                 break;
-            case PORTF :
-                /* code */
+            case PORTF :        /*  PORTF DIO   */
+                u08TempPin = strConfigPtr->pinConfig[u08Pin].pinX;
+                CLEAR_BIT(GPIO_PORTF_REGISTER_SET1->GPIOAFSEL.REG, u08TempPin) ;      /*  Choose DIO  */
+                SET_BIT  (GPIO_PORTF_REGISTER_SET2->GPIODEN.REG, u08TempPin)     ;        /*  Enable Digital  */
+                if (strConfigPtr->pinConfig[u08Pin].pinDir == INPUT){
+                    CLEAR_BIT(GPIO_PORTF_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_UP)        SET_BIT(GPIO_PORTF_REGISTER_SET2->GPIOPUR.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinInternaAttach == PULL_DOWN) SET_BIT(GPIO_PORTF_REGISTER_SET2->GPIOPDR.REG, u08TempPin);
+                    /* TODO: OPEN DRAIN INTERNAL ATTACH */
+                    /* TODO: SLEW RATE INTERNAL ATTACH */
+                }
+                else if ((strConfigPtr->pinConfig[u08Pin].pinDir == OUTPUT)){
+                    SET_BIT(GPIO_PORTF_REGISTER_SET1->GPIODIR.REG, u08TempPin);
+                    if     (strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_2mA) SET_BIT(GPIO_PORTF_REGISTER_SET2->GPIODR2R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_4mA) SET_BIT(GPIO_PORTF_REGISTER_SET2->GPIODR4R.REG, u08TempPin);
+                    else if(strConfigPtr->pinConfig[u08Pin].pinOutputCurrent == DRIVE_8mA) SET_BIT(GPIO_PORTF_REGISTER_SET2->GPIODR8R.REG, u08TempPin);
+                }
                 break;
             default:
                 break;

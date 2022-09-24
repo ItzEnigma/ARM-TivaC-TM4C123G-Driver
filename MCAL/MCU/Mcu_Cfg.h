@@ -44,6 +44,14 @@
 
 #define MCU_SYSDIV_VAL                           MCU_CLOCK_FREQ_20MHZ
 
+/**************************************** SysTick Configuration *********************************************/
+/*  SysTick Enable    */
+#define MCU_SYSTICK_ENABLE                      ENABLE
+#define MCU_SYSTICK_INTERRUPT_ENABLE            ENABLE
+/*  0 :  (PIOSC) divided by 4    
+ *  1 :  System clock                   */ 
+#define MCU_SYSTICK_CLKSRC                      1
+
 
 /*      Peripherals Clock Gate (ENABLE/DISABLE)       */
 #define GPIOA_CLK_STATE                         ENABLE

@@ -38,6 +38,11 @@
 #define SYSCTRL                                                 *((volatile u32*)(CORTEXM4_CORE_BASE_ADDRESS + 0xD10))
 /**************************************************************************************************************************/
 
+/************************************************** System Timer Registers (SysTick) *********************************************************/
+#define SYSTICK_STCTRL                                                   *((volatile u32*)(CORTEXM4_CORE_BASE_ADDRESS + 0x010))
+#define SYSTICK_STRELOAD                                                 *((volatile u32*)(CORTEXM4_CORE_BASE_ADDRESS + 0x014))
+#define SYSTICK_STCURRENT                                                *((volatile u32*)(CORTEXM4_CORE_BASE_ADDRESS + 0x018))
+
 /************************************************** System Control Registers ********************************************************/
 #define CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS                        (u32)0x400FE000
 #define SYSCTRL_REGISTER_REGISTER_RCC                   *((volatile u32*)(CORTEXM4_SYSTEM_CONTROL_BASE_ADDRESS + 0x060))
@@ -72,7 +77,7 @@ typedef enum{
     MCU_CLOCK_FREQ_15F_MHZ                    = 0xC,
     MCU_CLOCK_FREQ_14F_MHZ                    = 0xD,
     MCU_CLOCK_FREQ_13F_MHZ                    = 0xE,
-    MCU_CLOCK_FREQ_12F_MHZ_DEFAULT            = 0xF,
+    MCU_CLOCK_FREQ_12F_MHZ_DEFAULT            = 0xF
 }System_Clock_Frequencies_e;
 
 

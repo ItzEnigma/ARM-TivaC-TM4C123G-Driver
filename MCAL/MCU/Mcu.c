@@ -23,6 +23,8 @@
  *  LOCAL DATA 
  *********************************************************************************************************************/
 
+static void (*cbpSysTick_CallBackPtr)(void) = NULL_PTR;
+
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
@@ -66,7 +68,7 @@ void Mcu_ClockInit(void)
         while((SYS_CTRL_REGISTER_PLLSTAT & (1 << 0)) == 0);     /*  Waiting for PLL To LOCK  */
     }
     else{
-        // MISRA Rule
+        /*  MISRA Rule   */
     }
 }
 
@@ -97,11 +99,35 @@ void Mcu_PeripheralClocksInit(void)
                                                              (UART6_CLK_STATE << UART6_CLK) | (UART7_CLK_STATE << UART7_CLK) );
 }
 
+void Mcu_SysTick_Init(void)
+{
+    /**************************************** Configuring SysTick Timer *********************************************/
+    SYSTICK_STCTRL = 0x00000004;    /* RESET */
+    /* Configuring SysTick TImer & SysTick Peripheral Interrupt and Choosing SysTick CLK Source  */
+    SYSTICK_STCTRL = 0x00000007;
+    SYSTICK_STRELOAD = (16000) - 1;       /* Delay Reload Value Time */
+    SYSTICK_STCURRENT = 0;          /* RESET */
+}
+
+void SysTick_SetNotification(SysTick_Notification notification)
+{
+    cbpSysTick_CallBackPtr = notification;
+}
+
+void SysTick_Handler(void)
+{
+    if ( cbpSysTick_CallBackPtr == NULL_PTR ) return;
+    else if ( cbpSysTick_CallBackPtr != NULL_PTR )  (*cbpSysTick_CallBackPtr)();
+    else    {   /*  MISRA Rule   */    }
+
+}
 
 void Mcu_Init(void){
     Mcu_ClockInit();
     Mcu_PeripheralClocksInit();
     Port_Init(&Port_strPortConfig);
+    Interrupt_Init();
+    Mcu_SysTick_Init();
 }
 
 /**********************************************************************************************************************
