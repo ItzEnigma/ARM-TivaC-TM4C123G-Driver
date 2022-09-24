@@ -13,6 +13,7 @@
  *  INCLUDES
  *********************************************************************************************************************/
 
+#include "Led.h"
 
 /**********************************************************************************************************************
 *  LOCAL MACROS CONSTANT\FUNCTION
@@ -40,17 +41,23 @@
 
 
 /******************************************************************************
-* \Syntax          : Std_ReturnType FunctionName(AnyType parameterName)        
-* \Description     : Describe this service                                    
+* \Syntax          : void LED_TOG(u08 led)        
+* \Description     : This API toggles the pre-sent                                
 *                                                                             
 * \Sync\Async      : Synchronous                                               
 * \Reentrancy      : Non Reentrant                                             
-* \Parameters (in) : parameterName   Parameter Describtion                     
+* \Parameters (in) : [led - led pin number corresponding to MCU] -     
 * \Parameters (out): None                                                      
-* \Return value:   : Std_ReturnType  E_OK
-*                                    E_NOT_OK                                  
+* \Return value:   : None                                 
 *******************************************************************************/
-
+void LED_TOG(LED_Channel led)
+{
+    static u08 isOn = FALSE;
+	DIO_ToggleChannel(led);
+    isOn = !(isOn);
+    if (isOn)   Mcu_SysTick_SetReloadValue(SysTick_OnTime);
+    else        Mcu_SysTick_SetReloadValue(SysTick_OffTime);
+}
 
 
 /**********************************************************************************************************************

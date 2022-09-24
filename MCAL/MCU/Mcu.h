@@ -33,7 +33,7 @@
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
 
-typedef void (*SysTick_Notification)(void);
+typedef void (*SysTick_Notification)(u08);
 
 /*  GPIO Clock Gate Register    */
 typedef enum{
@@ -104,7 +104,9 @@ void Mcu_PeripheralClocksInit(void);
 
 void Mcu_SysTick_Init(void);
 
-void SysTick_SetNotification(SysTick_Notification);
+void Mcu_SysTick_SetReloadValue(u32);
+
+void SysTick_SetNotification_Led(SysTick_Notification, u08);
 
 void SysTick_Handler(void);
 

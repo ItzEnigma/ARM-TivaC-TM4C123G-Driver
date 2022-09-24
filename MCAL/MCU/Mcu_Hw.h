@@ -68,7 +68,7 @@ typedef struct
     REGISTER_TAG GPIOMIS;    
     REGISTER_TAG GPIOICR;
     REGISTER_TAG GPIOAFSEL; 
-}GPIO_REG_SET1;
+} GPIO_REG_SET1;
 
 typedef struct 
 {

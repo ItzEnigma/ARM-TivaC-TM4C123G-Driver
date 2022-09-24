@@ -13,6 +13,7 @@
  *  INCLUDES
  *********************************************************************************************************************/
 #include "Mcu.h"
+#include "../../Common/Bit_Math.h"
 #include "../Port/Port.h"
 
 /**********************************************************************************************************************
@@ -23,11 +24,13 @@
  *  LOCAL DATA 
  *********************************************************************************************************************/
 
-static void (*cbpSysTick_CallBackPtr)(void) = NULL_PTR;
+static void (*cbpSysTick_CallBackPtr)(u08) = NULL_PTR;
 
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
+
+u08 gToggledLed;
 
 /**********************************************************************************************************************
  *  LOCAL FUNCTION PROTOTYPES
@@ -105,21 +108,28 @@ void Mcu_SysTick_Init(void)
     SYSTICK_STCTRL = 0x00000004;    /* RESET */
     /* Configuring SysTick TImer & SysTick Peripheral Interrupt and Choosing SysTick CLK Source  */
     SYSTICK_STCTRL = 0x00000007;
-    SYSTICK_STRELOAD = (16000) - 1;       /* Delay Reload Value Time */
+    SYSTICK_STRELOAD = (16000) - 1;       /* Off-TIme Reload Value */
     SYSTICK_STCURRENT = 0;          /* RESET */
 }
 
-void SysTick_SetNotification(SysTick_Notification notification)
+void SysTick_SetNotification_Led(SysTick_Notification notification, u08 led)
 {
+    gToggledLed = led;
     cbpSysTick_CallBackPtr = notification;
+}
+
+void Mcu_SysTick_SetReloadValue(u32 reloadValue)
+{
+    SYSTICK_STRELOAD = (reloadValue) - 1;       /* Off-TIme Reload Value */
 }
 
 void SysTick_Handler(void)
 {
     if ( cbpSysTick_CallBackPtr == NULL_PTR ) return;
-    else if ( cbpSysTick_CallBackPtr != NULL_PTR )  (*cbpSysTick_CallBackPtr)();
+    else if ( cbpSysTick_CallBackPtr != NULL_PTR )  (*cbpSysTick_CallBackPtr)(gToggledLed);
     else    {   /*  MISRA Rule   */    }
-
+    CLEAR_BIT(SYSTICK_STCTRL, 16);
+    SYSTICK_STCURRENT = 0;          /* RESET */
 }
 
 void Mcu_Init(void){
